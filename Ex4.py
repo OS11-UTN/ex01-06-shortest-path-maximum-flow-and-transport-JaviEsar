@@ -44,11 +44,9 @@ res = linprog(C, A_eq=A, b_eq=B, bounds=bounds, method='interior-point')
 # Print Result
 print("Solver: Interior-Point")
 print("Raw Solution: ", res.x)
-print("Shortest Path:")
+print("Transported Units:")
 for i in range(res.x.shape[0]):
-    if res.x[i] > 1e-3:
-        print(arcs[i]+1, end=" -> ")
-
+    print(arcs[i]+1, " -> ", res.x[i])
 print("Objective Function Value: ", res.fun)
 
 
@@ -58,11 +56,9 @@ print("Objective Function Value: ", res.fun)
 res = linprog(C, A_eq=A, b_eq=B, bounds=bounds, method='simplex')
 
 # Print Result
-print("Solver: Simplex")
+print("\n\n\nSolver: Simplex")
 print("Raw Solution: ", res.x)
-print("Shortest Path:")
+print("Transported Units:")
 for i in range(res.x.shape[0]):
-    if res.x[i] > 0:
-        print(arcs[i]+1, end=" -> ")
-
+    print(arcs[i]+1, " -> ", res.x[i])
 print("Objective Function Value: ", res.fun)
